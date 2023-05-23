@@ -1,0 +1,53 @@
+id: ef467c78-35d7-4344-8e42-33646881121b
+timestamp: 2023-05-23T19:17:33Z
+username: guest
+source: TAP-GUI
+accelerator:
+  name: fragment
+  git:
+    url: https://github.com/sarahwalther/application-accelerator-samples
+    subPath: java-server-side-ui
+    ref:
+      branch: appsso-client-fragment-uses-class-claims
+    commit: 29fe5aab097020347a4d8517049fcc566179affa
+fragments:
+  - name: tap-workload
+    source:
+      image: gcr.io/cf-identity-service-oak/tap-packages/1.6.0-build.25@sha256:dbf0dedb6848ad8a7704c1c19465a1ddae9039b0e63c1dd0df3e2ed9cbda6093
+  - name: app-sso-client
+    git:
+      url: https://github.com/sarahwalther/application-accelerator-samples
+      subPath: fragments/app-sso-client
+      ref:
+        branch: appsso-client-fragment-uses-class-claims
+      commit: 29fe5aab097020347a4d8517049fcc566179affa
+  - name: build-wrapper-gradle
+    source:
+      image: gcr.io/cf-identity-service-oak/tap-packages/1.6.0-build.25@sha256:5480259d6a29a11f0cc482cd304501d74ccd89dd7207f2d639d6f0d8eedc3bf8
+  - name: build-wrapper-maven
+    source:
+      image: gcr.io/cf-identity-service-oak/tap-packages/1.6.0-build.25@sha256:195a3ca6585fa91c41292584a19c2807c72ecdf986ce860a7147451e89d467d4
+  - name: java-version
+    source:
+      image: gcr.io/cf-identity-service-oak/tap-packages/1.6.0-build.25@sha256:fa976ccf1609cb69e74a0162f0f49581fd0d393003e2fbe5d54d12eae62b4ff9
+  - name: live-update
+    source:
+      image: gcr.io/cf-identity-service-oak/tap-packages/1.6.0-build.25@sha256:f38e89653d0a59a5d14e1e13ad1d2928dc2b4ff292825071bdfdab30a2dc5019
+  - name: spring-boot-app-sso-auth-code-flow
+    git:
+      url: https://github.com/sarahwalther/application-accelerator-samples
+      subPath: fragments/spring-boot-app-sso-auth-code-flow
+      ref:
+        branch: appsso-client-fragment-uses-class-claims
+      commit: f9183f91646b6aefb41850b2287484a227d123a8
+options:
+  artifactId: server-side-ui-starter
+  buildTool: maven
+  groupId: com.example
+  includeAppSsoIntegration: true
+  includeBuildToolWrapper: true
+  javaVersion: 11
+  liveUpdateIDESupport: true
+  packageName: com.example.serversideuistarter
+  projectName: fragment
+  sourceRepositoryPrefix: dev.local
